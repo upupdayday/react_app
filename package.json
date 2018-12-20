@@ -2,6 +2,7 @@
   "name": "react_app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://upupdayday.github.io/react_app/build",
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
