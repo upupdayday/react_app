@@ -8,7 +8,7 @@ class TodoInput extends Component{
     }
     render(){
         return <input type="text" defaultValue={this.props.content}
-        onKeyPress={this.submit}/>
+        onKeyPress={this.submit.bind(this)}/>
     }
 
 
