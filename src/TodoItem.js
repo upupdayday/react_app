@@ -7,6 +7,7 @@ class TodoItem extends Component{
         this.delete = this.delete.bind(this);
     }
 
+
     toggle(e){
         this.props.onToggle(e, this.props.todo)
     }
