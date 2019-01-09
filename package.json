@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://upupdayday.github.io/react_app/build",
   "dependencies": {
+    "leancloud-storage": "^3.11.1",
     "normalize.css": "^8.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
