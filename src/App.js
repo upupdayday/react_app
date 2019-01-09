@@ -22,6 +22,15 @@ AV.init({
     appKey: APP_KEY
 });
 
+let TestObject = AV.Object.extend('TestObject');
+let testObject = new TestObject();
+testObject.save({
+    newTodo: '',
+    todoList: localStore.load('todoList') || []
+}).then(function(object) {
+    alert('LeanCloud Rocks!');
+})
+
 class App extends Component {
     constructor(props) {
         super(props);
