@@ -26,6 +26,10 @@ class App extends Component {
         this.delete = this.delete.bind(this);
     }
 
+    componentDidUpdate(){
+        localStore.save('todoList', this.state.todoList)
+    }
+
     addTodo(event){
         this.state.todoList.push({
             id: idMaker(),
@@ -37,7 +41,6 @@ class App extends Component {
             newTodo: '',
             todoList: this.state.todoList
         })
-        localStore.save('todoList', this.state.todoList);
     }
 
     changeTitle(event){
@@ -45,19 +48,16 @@ class App extends Component {
             newTodo: event.target.value,
             todoList: this.state.todoList
         })
-        localStore.save('todoList', this.state.todoList);
     }
 
     toggle(e, todo){
         todo.status = todo.status==='completed' ? '' : 'completed';
         this.setState(this.state);
-        localStore.save('todoList', this.state.todoList);
-    }
+   }
 
     delete(e, todo){
         todo.deleted = true;
         this.setState(this.state);
-        localStore.save('todoList', this.state.todoList);
     }
 
     render() {
