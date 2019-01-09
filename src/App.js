@@ -5,7 +5,6 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import * as localStore from './localStorage';
-import AV from 'leancloud-storage'
 
 let id = 0
 
@@ -13,23 +12,6 @@ function idMaker(){
     id += 1
     return id
 }
-
-let APP_ID = 'dhYg6BSLvBAIcEn7O9Dtu1Eh-gzGzoHsz';
-let APP_KEY = '6XYtn3IGuw5Sx9MiQO4b61Px';
-
-AV.init({
-    appId: APP_ID,
-    appKey: APP_KEY
-});
-
-let TestObject = AV.Object.extend('TestObject');
-let testObject = new TestObject();
-testObject.save({
-    newTodo: '',
-    todoList: localStore.load('todoList') || []
-}).then(function(object) {
-    alert('LeanCloud Rocks!');
-})
 
 class App extends Component {
     constructor(props) {
