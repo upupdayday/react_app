@@ -4,7 +4,6 @@ import './reset.css';
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
-import * as localStore from './localStorage';
 
 let id = 0
 
@@ -18,7 +17,7 @@ class App extends Component {
         super(props);
         this.state = {
             newTodo: '',
-            todoList: localStore.load('todoList') || []
+            todoList: []
         };
         this.addTodo = this.addTodo.bind(this);
         this.changeTitle = this.changeTitle.bind(this);
@@ -27,7 +26,7 @@ class App extends Component {
     }
 
     componentDidUpdate(){
-        localStore.save('todoList', this.state.todoList)
+
     }
 
     addTodo(event){
