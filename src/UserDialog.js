@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './UserDialog.css'
 
 class UserDialog extends Component{
     // constructor(props){
