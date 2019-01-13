@@ -25,24 +25,20 @@ class UserDialog extends Component{
     signIn(e){}
 
     changeUsername(e){
+        // this.state.formData.username = e.target.value
+        // this.setState(this.state)
+        // 像上面这样写会看到一个警告 warning  Do not mutate state directly. Use setState()
         console.log(this.state)
-        this.setState({
-            formData:{
-                username: e.target.value,
-                password: this.state.formData.password
-            }
-        })
+        let stateCopy = JSON.parse(JSON.stringify(this.state))  // 用 JSON 深拷贝
+        stateCopy.formData.username = e.target.value
+        this.setState(stateCopy)
         console.log(this.state)
     }
-
     changePassword(e){
         console.log(this.state)
-        this.setState({
-            formData:{
-                username:this.state.formData.username,
-                password: e.target.value
-            }
-        })
+        let stateCopy = JSON.parse(JSON.stringify(this.state))  // 用 JSON 深拷贝
+        stateCopy.formData.password = e.target.value
+        this.setState(stateCopy)
         console.log(this.state)
     }
 
