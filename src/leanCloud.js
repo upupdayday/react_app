@@ -42,5 +42,10 @@ function getCurrentUser(){
     }
 }
 
-export {AV, signUp, getCurrentUser};
+function signOut(){
+    AV.User.logOut()
+    return undefined
+}
+
+export {AV, signUp, getCurrentUser, signOut};
 
