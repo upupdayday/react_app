@@ -33,5 +33,14 @@ function getUserFromAVUser(AVUser){
     }
 }
 
-export {AV, signUp};
+function getCurrentUser(){
+    let user = AV.User.current()
+    if(user){
+        return getUserFromAVUser(user)
+    }else{
+        return null
+    }
+}
+
+export {AV, signUp, getCurrentUser};
 
