@@ -26,8 +26,7 @@ class App extends Component {
         this.changeTitle = this.changeTitle.bind(this);
         this.toggle = this.toggle.bind(this);
         this.delete = this.delete.bind(this);
-        this.onSignUp = this.onSignUp.bind(this);
-        this.onSignIn = this.onSignIn.bind(this);
+        this.onSignUporSignIn = this.onSignUporSignIn.bind(this);
         this.onSignOut = this.onSignOut.bind(this);
     }
 
@@ -35,12 +34,7 @@ class App extends Component {
 
     }
 
-    onSignIn(user) {
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
-        stateCopy.user = user
-        this.setState(stateCopy)
-    }
-    onSignUp(user) {
+    onSignUporSignIn(user) {
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.user = user
         this.setState(stateCopy)
@@ -108,8 +102,8 @@ class App extends Component {
               </ol>
               {this.state.user.id ? null
                   : <UserDialog
-                      onSignUp={this.onSignUp}
-                      onSignIn={this.onSignIn}/>}
+                      onSignUp={this.onSignUporSignIn}
+                      onSignIn={this.onSignUporSignIn}/>}
           </div>
         );
     }
