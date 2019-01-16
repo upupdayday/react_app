@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './UserDialog.css'
-import {signUp, signIn} from './leanCloud'
+import {signUp, signIn, sendPasswordResetEmail} from './leanCloud'
 
 class UserDialog extends Component{
     constructor(props){
@@ -19,6 +19,7 @@ class UserDialog extends Component{
         this.signUp = this.signUp.bind(this);
         this.signIn = this.signIn.bind(this);
         this.showForgotPassword = this.showForgotPassword.bind(this);
+        this.resetPassword = this.resetPassword.bind(this);
     }
 
     switch(e) {
@@ -85,8 +86,9 @@ class UserDialog extends Component{
         stateCopy.selectedTab = 'forgotPassword'
         this.setState(stateCopy)
     }
-    resetPassword(){
-
+    resetPassword(e){
+        e.preventDefault()
+        sendPasswordResetEmail(this.state.formData.email)
     }
 
     render(){
@@ -155,7 +157,7 @@ class UserDialog extends Component{
                 <h3>
                     重置密码
                 </h3>
-                <form className="forgotPassword" onSubmit={this.resetPassword.bind(this)}> {/* 登录*/}
+                <form className="forgotPassword" onSubmit={this.resetPassword}> {/* 登录*/}
                     <div className="row">
                         <label>邮箱</label>
                         <input type="text" value={this.state.formData.email}
