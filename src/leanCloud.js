@@ -8,7 +8,7 @@ AV.init({
     appKey: APP_KEY
 });
 
-function signUp(username, password, successFn, errorFn){
+function signUp(email, username, password, successFn, errorFn){
     // 新建 AVUser 对象实例
     var user = new AV.User()
     // 设置用户名
@@ -16,6 +16,8 @@ function signUp(username, password, successFn, errorFn){
     // 设置密码
     user.setPassword(password)
     // 设置邮箱
+    user.setEmail(email);
+
     user.signUp().then(function (loginedUser) {
         console.log(loginedUser);
         let user = getUserFromAVUser(loginedUser)
