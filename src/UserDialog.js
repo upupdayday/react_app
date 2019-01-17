@@ -3,6 +3,7 @@ import './UserDialog.css'
 import {signUp, signIn, sendPasswordResetEmail} from './leanCloud'
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
+import ForgotPasswordForm from './ForgotPasswordForm'
 
 class UserDialog extends Component{
     constructor(props){
@@ -149,7 +150,12 @@ class UserDialog extends Component{
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
-                    {this.state.selectedTab === 'signInOrSignUp' ? signInOrSignUp : forgotPassword}
+                    {this.state.selectedTab === 'signInOrSignUp' ?
+                        signInOrSignUp
+                        : <ForgotPasswordForm formData={this.state.formData}
+                                    onSubmit={this.resetPassword}
+                                    onChange={this.changeFormData}
+                                    onReturnToSignIn={this.returnToSignIn}/>}
                 </div>
             </div>
         );
