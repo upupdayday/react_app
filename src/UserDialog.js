@@ -8,7 +8,6 @@ class UserDialog extends Component{
     constructor(props){
         super(props)
         this.state = {
-            selected: 'signUp',
             selectedTab: 'signInOrSignUp', // 'forgotPassword'
             formData:{
                 email:'',
