@@ -127,26 +127,7 @@ class UserDialog extends Component{
                 </div>
             </div>
         )
-
-        let forgotPassword = (
-            <div className="forgotPassword">
-                <h3>
-                    重置密码
-                </h3>
-                <form className="forgotPassword" onSubmit={this.resetPassword}> {/* 登录*/}
-                    <div className="row">
-                        <label>邮箱</label>
-                        <input type="text" value={this.state.formData.email}
-                               onChange={this.changeFormData.bind(this, 'email')}/>
-                    </div>
-                    <div className="row actions">
-                        <button type="submit">发送重置邮件</button>
-                        <a href="#" onClick={this.returnToSignIn}>返回登录</a>
-                    </div>
-                </form>
-            </div>
-        )
-
+        
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
