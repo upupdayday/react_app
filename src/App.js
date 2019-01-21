@@ -5,14 +5,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
-import {getCurrentUser, signOut} from './leanCloud'
-
-let id = 0
-
-function idMaker(){
-    id += 1
-    return id
-}
+import {getCurrentUser, signOut, TodoModel} from './leanCloud'
 
 class App extends Component {
     constructor(props) {
@@ -22,12 +15,24 @@ class App extends Component {
             newTodo: '',
             todoList: []
         };
+
+        console.log('2222222')
         this.addTodo = this.addTodo.bind(this);
         this.changeTitle = this.changeTitle.bind(this);
         this.toggle = this.toggle.bind(this);
         this.delete = this.delete.bind(this);
         this.onSignUporSignIn = this.onSignUporSignIn.bind(this);
         this.onSignOut = this.onSignOut.bind(this);
+
+        let user = getCurrentUser()
+        if (user) {
+            TodoModel.getByUser(user, (todos) => {
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = todos
+                this.setState(stateCopy)
+                console.log('~~~~~~~~~')
+            })
+        }
     }
 
     componentDidUpdate(){
@@ -38,6 +43,7 @@ class App extends Component {
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.user = user
         this.setState(stateCopy)
+        console.log('1111111111111111')
     }
 
     onSignOut(){
@@ -48,16 +54,21 @@ class App extends Component {
     }
 
     addTodo(event){
-        this.state.todoList.push({
-            id: idMaker(),
+        let newTodo = {
             title: event.target.value,
             status: null,
             deleted: false
-        })
-        this.setState({
-            newTodo: '',
-            todoList: this.state.todoList
-        })
+        }
+        TodoModel.create(newTodo,
+                (id)=>{
+                    newTodo.id = id;
+                    this.state.todoList.push(newTodo);
+                    this.setState({
+                        newTodo: '',
+                        todoList: this.state.todoList})
+                },
+                (error) => {console.log(error)}
+        )
     }
 
     changeTitle(event){
@@ -76,6 +87,8 @@ class App extends Component {
         todo.deleted = true;
         this.setState(this.state);
     }
+
+
 
     render() {
         let todos = this.state.todoList.filter((item)=> !item.deleted)
