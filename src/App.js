@@ -5,7 +5,7 @@ import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog';
-import {AV, getCurrentUser, signOut} from './leanCloud'
+import {getCurrentUser, signOut} from './leanCloud'
 
 let id = 0
 
@@ -13,22 +13,6 @@ function idMaker(){
     id += 1
     return id
 }
-
-
-
-// 声明类型
-var TodoFolder = AV.Object.extend('TodoFolder');
-// 新建对象
-var todoFolder = new TodoFolder();
-// 设置名称
-todoFolder.set('name','工作');
-// 设置优先级
-todoFolder.set('priority',1);
-todoFolder.save().then(function (todo) {
-    console.log('objectId is ' + todo.id);
-}, function (error) {
-    console.error(error);
-});
 
 class App extends Component {
     constructor(props) {
