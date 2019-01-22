@@ -47,8 +47,13 @@ const TodoModel = {
     update(){
 
     },
-    destroy(){
-
+    destroy(todoId, sucessFn, errorFn){
+        var todo = AV.Object.createWithoutData('Todo', todoId);
+        todo.destroy().then(function (success) {
+            sucessFn && sucessFn.call(null)
+        }, function (error) {
+            errorFn && errorFn.call(null, error)
+        });
     }
 }
 
